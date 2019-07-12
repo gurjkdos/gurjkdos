@@ -1,0 +1,18 @@
+using SNWD_SO;
+
+entity "SNWD_SO_I" {
+   key "CLIENT"      : association to "SNWD_SO" default 000 not null;
+   key "NODE_KEY"    : Binary(16) not null;
+   "SO_ITEM_POS"     : String(10) default 0000000000 not null;
+   "PRODUCT_GUID"    : Binary(16);
+   "NOTE_GUID"       : Binary(16);
+   "CURRENCY_CODE"   : String(5) not null;
+   "GROSS_AMOUNT"    : Decimal(15, 2) default 0 not null;
+   "NET_AMOUNT"      : Decimal(15, 2) default 0 not null;
+   "TAX_AMOUNT"      : Decimal(15, 2) default 0 not null;
+   "ITEM_ATP_STATUS" : String(1) not null;
+}
+technical configuration {
+   column store;
+   index "SNWD_SO_I~POI" on(CLIENT.NODE_KEY asc);
+};

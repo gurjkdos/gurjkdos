@@ -1,0 +1,13 @@
+using SNWD_SO_I;
+
+entity "SNWD_SO_SL" {
+   key "CLIENT"    : association to "SNWD_SO_I" default 000 not null;
+   key "NODE_KEY"  : Binary(16) not null;
+   "QUANTITY"      : Decimal(13, 3) default 0 not null;
+   "QUANTITY_UNIT" : String(3) not null;
+   "DELIVERY_DATE" : Decimal(21, 7) default 0 not null;
+}
+technical configuration {
+   column store;
+   index "SNWD_SO_SL~PSI" on(CLIENT.NODE_KEY asc);
+};
